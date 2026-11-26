@@ -1,0 +1,17 @@
+{
+  "name": "Silsilah Keluarga Pacitan",
+  "short_name": "Silsilah",
+  "description": "Pohon silsilah keluarga besar Pacitan.",
+  "lang": "id",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#efe4cf",
+  "theme_color": "#efe4cf",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

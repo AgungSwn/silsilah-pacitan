@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="34%" r="78%">
+      <stop offset="0" stop-color="#a5855a"/><stop offset=".55" stop-color="#6f5434"/><stop offset="1" stop-color="#3a2b1a"/>
+    </radialGradient>
+    <linearGradient id="gold" gradientUnits="userSpaceOnUse" x1="0" y1="90" x2="0" y2="440">
+      <stop offset="0" stop-color="#fbebbd"/><stop offset=".45" stop-color="#e0bb68"/><stop offset="1" stop-color="#a97f34"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="40%">
+      <stop offset="0" stop-color="#ffe9b0" stop-opacity=".35"/><stop offset="1" stop-color="#ffe9b0" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="kw" width="64" height="64" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#f6dfa0" stroke-opacity=".09" stroke-width="2">
+        <ellipse cx="32" cy="16" rx="8" ry="14"/><ellipse cx="32" cy="48" rx="8" ry="14"/>
+        <ellipse cx="16" cy="32" rx="14" ry="8"/><ellipse cx="48" cy="32" rx="14" ry="8"/>
+        <circle cx="32" cy="32" r="2.5"/>
+      </g>
+    </pattern>
+  </defs>
+  <rect width="512" height="512" fill="url(#bg)"/>
+  <rect width="512" height="512" fill="url(#kw)"/>
+  <circle cx="256" cy="232" r="190" fill="url(#glow)"/>
+  <circle cx="256" cy="262" r="186" fill="none" stroke="url(#gold)" stroke-width="5" opacity=".85"/>
+  <circle cx="256" cy="262" r="174" fill="none" stroke="#f6dfa0" stroke-width="1.5" opacity=".35"/>
+  <!-- batang -->
+  <path d="M238 392 C246 340 248 300 250 246 L262 246 C264 300 266 340 274 392 Z" fill="url(#gold)"/>
+  <!-- dahan -->
+  <g fill="none" stroke="url(#gold)" stroke-width="11" stroke-linecap="round">
+    <path d="M256 318 C228 300 196 290 170 252"/>
+    <path d="M256 318 C284 300 316 290 342 252"/>
+    <path d="M256 276 C236 246 218 224 196 196"/>
+    <path d="M256 276 C276 246 294 224 316 196"/>
+    <path d="M256 252 L256 136"/>
+  </g>
+  <!-- garis pernikahan (ganda) -->
+  <g stroke="url(#gold)" stroke-width="4" stroke-linecap="round" opacity=".9">
+    <path d="M236 116 H276"/><path d="M236 127 H276"/>
+  </g>
+  <!-- simpul anggota keluarga -->
+  <g fill="url(#gold)" stroke="#4a3722" stroke-width="5">
+    <circle cx="170" cy="252" r="24"/><circle cx="342" cy="252" r="24"/>
+    <circle cx="194" cy="192" r="22"/><circle cx="318" cy="192" r="22"/>
+    <circle cx="218" cy="121" r="21"/><circle cx="294" cy="121" r="21"/>
+  </g>
+  <g fill="#4a3722" opacity=".55">
+    <circle cx="170" cy="245" r="7"/><circle cx="342" cy="245" r="7"/>
+    <circle cx="194" cy="185" r="6.5"/><circle cx="318" cy="185" r="6.5"/>
+    <circle cx="218" cy="114" r="6.5"/><circle cx="294" cy="114" r="6.5"/>
+  </g>
+  <!-- ombak laut Pacitan -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M150 410 q26 -16 52 0 t52 0 t52 0 t52 0" stroke="url(#gold)" stroke-width="7"/>
+    <path d="M176 436 q20 -12 40 0 t40 0 t40 0 t40 0" stroke="#f6dfa0" stroke-width="4" opacity=".55"/>
+  </g>
+</svg>
