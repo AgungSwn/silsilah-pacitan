@@ -1,5 +1,5 @@
 // Service worker sederhana: menyimpan tampilan pembuka agar aplikasi bisa dipasang di layar utama.
-const CACHE = 'silsilah-pacitan-v2';
+const CACHE = 'silsilah-pacitan-v3';
 const FILES = ['./', './index.html', './manifest.json',
   './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png', './icons/favicon-64.png'];
 

@@ -6,6 +6,23 @@
 <title>Silsilah Keluarga Pacitan</title>
 <meta name="description" content="Pohon silsilah keluarga besar Pacitan.">
 <meta name="theme-color" content="#efe4cf">
+<!-- Pratinjau link (WhatsApp, Facebook, Telegram, dll.) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Silsilah Keluarga Pacitan">
+<meta property="og:title" content="Silsilah Keluarga Pacitan">
+<meta property="og:description" content="Pohon keluarga besar, hubungan kerabat, dan panggilan Jawa — buka di HP & PC.">
+<meta property="og:url" content="https://agungswn.github.io/silsilah-pacitan/">
+<meta property="og:image" content="https://agungswn.github.io/silsilah-pacitan/icons/og-image.jpg">
+<meta property="og:image:secure_url" content="https://agungswn.github.io/silsilah-pacitan/icons/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo pohon silsilah emas — Silsilah Keluarga Pacitan">
+<meta property="og:locale" content="id_ID">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Silsilah Keluarga Pacitan">
+<meta name="twitter:description" content="Pohon keluarga besar, hubungan kerabat, dan panggilan Jawa — buka di HP & PC.">
+<meta name="twitter:image" content="https://agungswn.github.io/silsilah-pacitan/icons/og-image.jpg">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" href="icons/favicon-64.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -45,9 +62,41 @@
 
   const app = document.getElementById('app'), splash = document.getElementById('splash'),
         msg = document.getElementById('msg'), direct = document.getElementById('direct');
-  direct.href = APP_URL;
-  app.addEventListener('load', () => setTimeout(() => splash.classList.add('hide'), 300));
-  app.src = APP_URL;
+
+  // Identitas "Saya adalah…" disimpan di sini (situs sendiri, tidak dihapus browser),
+  // lalu dikirim ke aplikasi lewat alamat (?saya=…) setiap kali dibuka.
+  const KEY = 'silsilah-saya';
+  const store = v => { try { v ? localStorage.setItem(KEY, v) : localStorage.removeItem(KEY); } catch (e) {} };
+  let saya = ''; try { saya = localStorage.getItem(KEY) || ''; } catch (e) {}
+  const qs = new URLSearchParams(location.search);
+  if (qs.has('saya')) { saya = qs.get('saya') || ''; store(saya); history.replaceState(null, '', location.pathname); }
+  const here = location.origin + location.pathname;
+  const build = inframe => {
+    const p = new URLSearchParams();
+    if (/^[A-Za-z0-9_\-]{1,80}$/.test(saya)) p.set('saya', saya);
+    p.set('w', here);
+    if (inframe) p.set('inframe', '1');
+    return APP_URL + '?' + p.toString();
+  };
+  window.addEventListener('message', e => {
+    const ok = /(^https:\/\/script\.google\.com$)|(\.googleusercontent\.com$)/.test(e.origin);
+    if (ok && e.data && e.data.type === 'silsilah-saya' && typeof e.data.id === 'string') { saya = e.data.id; store(saya); }
+  });
+
+  direct.href = build(false);
+  // Safari (iPhone, iPad, Mac) memblokir cookie Google di dalam bingkai sehingga muncul
+  // "PERMISSION_DENIED". Di sana aplikasi dibuka langsung, bukan di dalam bingkai.
+  const ua = navigator.userAgent;
+  const isIOS = /iP(hone|ad|od)/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isSafari = /^((?!chrome|chromium|crios|fxios|edg|android).)*safari/i.test(ua);
+  if (isIOS || isSafari) {
+    msg.textContent = 'Membuka aplikasi…';
+    app.remove();
+    setTimeout(() => location.replace(build(false)), 700);
+  } else {
+    app.addEventListener('load', () => setTimeout(() => splash.classList.add('hide'), 300));
+    app.src = build(true);
+  }
   // Bila lama tidak terbuka (mis. perlu masuk akun Google), tawarkan buka langsung.
   setTimeout(() => {
     if (!splash.classList.contains('hide')) {
